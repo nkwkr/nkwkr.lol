@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>nkwkr.lol</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+html {
+  background-color: #080808;
+  min-height: 100%;
+  font-family: 'Inter', sans-serif;
+  padding: 1.5em 1em;
+  box-sizing: border-box;
+}
+
+h1 { 
+  font-family: 'Inter', sans-serif; 
+  text-align: center; 
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  display: inline-block;
+  margin: 0 auto;
+  color: #f3f4f6;
+}
+
+.h1-container {
+  text-align: center;
+  height: 2.3rem; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin-top: 1.2em;
+  border-bottom: 1px solid #333333;
+  padding-bottom: 0.25em;
+  color: #e5e7eb;
+  text-align: center;
+  max-width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  background: #18181b;
+  background: linear-gradient(90deg, #18181b 0%, #1f1f23 20%, #18181b 100%);
+  margin: 0 auto;
+  max-width: 48em;
+  padding: 1.6em 2.2em;
+  border: 4px solid #27272a;
+  border-radius: 6px;
+  line-height: 1.45;
+  color: #d1d5db;
+  position: relative;
+  padding-bottom: 3.2em; 
+}
+
+a {
+  color: #f87171;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr { 
+  clear: both; 
+  border: 0;
+  border-top: 1px solid #333333;
+  margin: 1.2em 0;
+}
+
+.motd-bar {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.6em 0;
+  margin: -1.6em -2.2em 1.4em -2.2em;
+  border-bottom: 1px solid #2a2a2a;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+.motd-ticker {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+  will-change: transform; 
+}
+
+.ticker-group {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 4em;
+}
+
+.motd-ticker img {
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+
+.ticker-item a.dubby-link:hover {
+  color: #facc15 !important;
+}
+
+.ticker-item a.geekle-link:hover {
+  color: #b45309 !important;
+}
+
+.ticker-item span.btc-item {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.ticker-item span.btc-item:hover {
+  color: #f7931a !important;
+}
+
+.ticker-item span.xmr-item:hover {
+  color: #ff6600 !important;
+}
+
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-33.333%, 0, 0); }
+}
+
+.section-content {
+  display: block;
+}
+
+.home-content {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.home-content img {
+  max-width: 185px;
+  height: auto;
+  display: block;
+  /* Moved down, flattened vertically, and shifted left to center with h2 */
+  margin: -4px auto 1.2em auto;
+  transform: translateY(14px) translateX(-6px) scaleY(0.92);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+}
+
+.home-content p {
+  text-align: center;
+  margin-bottom: 1.2em;
+  color: #9ca3af;
+  max-width: 100%;
+  white-space: nowrap;
+  font-size: 0.95rem; 
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(12px);
+}
+
+.home-content ul {
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  margin-top: 1.2em;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #f3f4f6;
+  text-decoration: none;
+  filter: drop-shadow(0 0 8px rgba(243, 244, 246, 0.5));
+}
+
+.social-icons svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+#dubby-notification {
+  display: none;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: -0.5em;
+  margin-bottom: 1.4em;
+  font-size: 1rem;
+  color: #f3f4f6;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+#dubby-notification .promo-code {
+  color: #f87171;
+  font-weight: 700;
+}
+
+#dubby-notification .countdown-text {
+  display: block;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 0.3em;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal Overlay & Card Styling matching the aesthetic */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-card {
+  background: #18181b;
+  border: 3px solid #27272a;
+  border-radius: 8px;
+  padding: 2em;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  position: relative;
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-card {
+  transform: translateY(0);
+}
+
+.modal-card img.modal-btc-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.8em;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.modal-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f3f4f6;
+  margin: 0 0 0.4em 0;
+}
+
+.modal-card p {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-bottom: 1.2em;
+}
+
+.address-box {
+  background: #121212;
+  border: 1px solid #2a2a2a;
+  padding: 0.8em 1em;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: #f7931a;
+  word-break: break-all;
+  margin-bottom: 1.2em;
+  user-select: all;
+}
+
+.modal-btn-container {
+  display: flex;
+  gap: 0.8em;
+  justify-content: center;
+}
+
+.modal-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.6em 1.2em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+}
+
+.btn-copy {
+  background: #f7931a;
+  color: #121212;
+}
+
+.btn-copy:hover {
+  background: #ffa733;
+  filter: drop-shadow(0 0 6px rgba(247, 147, 26, 0.4));
+}
+
+.btn-close {
+  background: #27272a;
+  color: #d1d5db;
+  border: 1px solid #3f3f46;
+}
+
+.btn-close:hover {
+  background: #3f3f46;
+  color: #f3f4f6;
+}
+
+/* Circle Arrow Button sitting directly on the bottom container border */
+.circle-arrow-btn {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #18181b;
+  border: 4px solid #27272a;
+  color: #9ca3af;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  z-index: 10;
+}
+
+.circle-arrow-btn:hover {
+  background-color: #27272a;
+  color: #f3f4f6;
+  border-color: #3f3f46;
+  filter: drop-shadow(0 0 6px rgba(243, 244, 246, 0.3));
+}
+
+.circle-arrow-btn svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.circle-arrow-btn.active svg {
+  transform: rotate(180deg);
+}
+
+/* Collapsible Video Drawer adjusted for the video size */
+.video-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+  opacity: 0;
+  text-align: center;
+  margin-top: 1.2em;
+}
+
+.video-drawer.open {
+  max-height: 350px;
+  opacity: 1;
+  transition: max-height 0.5s ease-in, opacity 0.4s ease-in;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #333333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="motd-bar">
+  <div class="motd-ticker">
+    <!-- Group 1 -->
+    <div class="ticker-group">
+      <span class="ticker-item"><a class="dubby-link" onclick="triggerDubby(event)" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center;"><img src="https://www.dubby.gg/cdn/shop/files/DubbyIconNoBlood_optimized_6ee2ea08-13dd-46f6-972a-f984b8a73636.png?v=1762463942" alt="dubby" /> Partnered with DubbyEnergy</a></span>
+      <span class="ticker-item"><a class="geekle-link" href="https://www.youtube.com/@GeekleMatter" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center;"><img src="https://www.pngkey.com/png/full/345-3457791_master-call-of-duty-bo2-prestige-master.png" alt="geeklematter" /> Affiliated with GeekleMatter</a></span>
+      <span class="ticker-item"><span class="btc-item" onclick="openBtcModal()" style="color: inherit; display: inline-flex; align-items: center;"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=035" alt="BTC" /> Buy me a coffee!</span></span>
+    </div>
+    <!-- Group 2 (Duplicate for seamless loop) -->
+    <div class="ticker-group" aria-hidden="true">
+      <span class="ticker-item"><a class="dubby-link" onclick="triggerDubby(event)" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center;"><img src="https://www.dubby.gg/cdn/shop/files/DubbyIconNoBlood_optimized_6ee2ea08-13dd-46f6-972a-f984b8a73636.png?v=1762463942" alt="dubby" /> Partnered with DubbyEnergy</a></span>
+      <span class="ticker-item"><a class="geekle-link" href="https://www.youtube.com/@GeekleMatter" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration:none; display: inline-flex; align-items: center;"><img src="https://www.pngkey.com/png/full/345-3457791_master-call-of-duty-bo2-prestige-master.png" alt="geeklematter" /> Affiliated with GeekleMatter</a></span>
+      <span class="ticker-item"><span class="btc-item" onclick="openBtcModal()" style="color: inherit; display: inline-flex; align-items: center;"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=035" alt="BTC" /> Buy me a coffee!</span></span>
+    </div>
+    <!-- Group 3 (Extra buffer to prevent stutter/hitch) -->
+    <div class="ticker-group" aria-hidden="true">
+      <span class="ticker-item"><a class="dubby-link" onclick="triggerDubby(event)" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center;"><img src="https://www.dubby.gg/cdn/shop/files/DubbyIconNoBlood_optimized_6ee2ea08-13dd-46f6-972a-f984b8a73636.png?v=1762463942" alt="dubby" /> Partnered with DubbyEnergy</a></span>
+      <span class="ticker-item"><a class="geekle-link" href="https://www.youtube.com/@GeekleMatter" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration:none; display: inline-flex; align-items: center;"><img src="https://www.pngkey.com/png/full/345-3457791_master-call-of-duty-bo2-prestige-master.png" alt="geeklematter" /> Affiliated with GeekleMatter</a></span>
+      <span class="ticker-item"><span class="btc-item" onclick="openBtcModal()" style="color: inherit; display: inline-flex; align-items: center;"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=035" alt="BTC" /> Buy me a coffee!</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- Clean Buy Me a Coffee / BTC Modal Popup -->
+<div class="modal-overlay" id="btcModal" onclick="closeBtcModalOutside(event)">
+  <div class="modal-card">
+    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=035" alt="Bitcoin" class="modal-btc-icon" />
+    <h3>Buy Me a Coffee</h3>
+    <p>Contributions are deeply appreciated.</p>
+    <div class="address-box" id="btcAddressText">bc1q29mmfta2zrxkmafreyp5ztff87vgv359d49e9k</div>
+    <div class="modal-btn-container">
+      <button class="modal-btn btn-copy" onclick="copyBtcAddress()" id="copyBtn">Copy Address</button>
+      <button class="modal-btn btn-close" onclick="closeBtcModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="home" class="section-content">
+  <div class="home-content">
+    <div class="h1-container">
+      <h1></h1>
+    </div>
+
+    <!-- Hovering text notification -->
+    <div id="dubby-notification">
+      Use Code: <span class="promo-code">nkwkr</span> 10% off
+      <span class="countdown-text">Redirecting to dubby.gg in <span id="countdown">5</span> seconds...</span>
+    </div>
+
+    <img src="nk.png" alt="Home Image" />
+
+    <h2>nkwkr</h2>
+    
+    <p>Call of Duty: Modern Warfare 2 & Black Ops 2 trickshotter since 2012</p>
+    <hr />
+
+    <!-- Floating Social Media Icons (YouTube, X, Discord) -->
+    <div class="social-icons">
+      <!-- YouTube Icon -->
+      <a href="https://youtube.com/@overspinner" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <!-- X (Twitter) Icon -->
+      <a href="https://x.com/overspinner" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <!-- Discord Icon -->
+      <a href="https://discord.gg/M2nTanFedF" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Circle Arrow Button sitting directly on the bottom container border -->
+<button class="circle-arrow-btn" id="videoToggleBtn" onclick="toggleVideoDrawer()">
+  <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+</button>
+
+<!-- Sliding YouTube Video Drawer -->
+<div class="video-drawer" id="videoDrawer">
+  <div style="max-width: 48em; margin: 0 auto; padding: 0 2.2em;">
+    <div class="video-wrapper">
+      <!-- Fixed: switched from watch?v= to embed/ -->
+      <iframe id="youtubeIframe" src="" data-src="https://www.youtube.com/embed/SbC1cWaTx0M" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+let isRedirecting = false;
+
+function triggerDubby(event) {
+  if (event) event.preventDefault();
+  if (isRedirecting) return;
+  isRedirecting = true;
+
+  const notification = document.getElementById('dubby-notification');
+  const countdownSpan = document.getElementById('countdown');
+  
+  notification.style.display = 'block';
+
+  let timeLeft = 5;
+  countdownSpan.textContent = timeLeft;
+
+  const timer = setInterval(() => {
+    timeLeft--;
+    countdownSpan.textContent = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      notification.style.display = 'none';
+      window.location.href = 'https://dubby.gg';
+    }
+  }, 1000);
+}
+
+function openBtcModal() {
+  document.getElementById('btcModal').classList.add('active');
+}
+
+function closeBtcModal() {
+  document.getElementById('btcModal').classList.remove('active');
+}
+
+function closeBtcModalOutside(event) {
+  if (event.target.id === 'btcModal') {
+    closeBtcModal();
+  }
+}
+
+function copyBtcAddress() {
+  const address = document.getElementById('btcAddressText').textContent;
+  navigator.clipboard.writeText(address).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    btn.style.background = '#22c55e';
+    btn.style.color = '#ffffff';
+    setTimeout(() => {
+      btn.textContent = 'Copy Address';
+      btn.style.background = '#f7931a';
+      btn.style.color = '#121212';
+    }, 2000);
+  });
+}
+
+function toggleVideoDrawer() {
+  const drawer = document.getElementById('videoDrawer');
+  const btn = document.getElementById('videoToggleBtn');
+  const iframe = document.getElementById('youtubeIframe');
+
+  drawer.classList.toggle('open');
+  btn.classList.toggle('active');
+
+  if (drawer.classList.contains('open')) {
+    if (!iframe.getAttribute('src') && iframe.getAttribute('data-src')) {
+      iframe.setAttribute('src', iframe.getAttribute('data-src'));
+    }
+  }
+}
+</script>
+</body>
+</html>
